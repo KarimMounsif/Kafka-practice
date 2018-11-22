@@ -15,7 +15,7 @@ public class ProducerDemo {
         Properties properties = new Properties();
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName();
+        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
 
         //create the producer
@@ -25,7 +25,13 @@ public class ProducerDemo {
         ProducerRecord<String, String> record =
                 new ProducerRecord<String, String>("first_topic", "hello world");
 
-        //send data
+        //send data - asynchrunus
         producer.send(record);
+
+        //flush data
+        producer.flush();
+
+        //flush and close
+        producer.close();
     }
 }
